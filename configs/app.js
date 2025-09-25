@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './db.js';
 import 'dotenv/config';
+import usersModels from '../src/users/users.models.js';
   
 
 const middlewares = (app) => {
@@ -16,7 +17,7 @@ const middlewares = (app) => {
     app.use(morgan('dev'));
 }
 
-const conectarDB = async () => {
+const conectarDB = async () => {  
     try{
         await dbConnection();
     }catch(error){

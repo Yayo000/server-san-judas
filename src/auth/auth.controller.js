@@ -1,10 +1,11 @@
 import User from '../users/user.model.js'
-import { hash } from 'argon2'
+import { hash, verify } from 'argon2'
 import { generarJWT } from "../../helpers/JWT-generate.js"
 
 export const register = async (req, res) => {
     try{
         const data = req.body
+        console.log(data.email)
         
         let profilePicture = req.fileRelativePath || 'profiles/default-avatar.png'
         const encryptedPassword = await hash(data.password)
@@ -35,8 +36,8 @@ export const login = async (req, res) => {
     const { email, password, username } = req.body;
 
     try {
-        const lowerEmail = email ? email.toLowercase() : null;
-        const lowerUsername = username ? username.toLowercase() : null;
+        const lowerEmail = email ? email.toLowerCase() : null;
+        const lowerUsername = username ? username.toLowerCase() : null;
 
         const user = await User.findOne({
             $or: [{ email: lowerEmail }, { username: lowerUsername }],

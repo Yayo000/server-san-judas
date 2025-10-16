@@ -5,8 +5,7 @@ import { generarJWT } from "../../helpers/JWT-generate.js"
 export const register = async (req, res) => {
     try{
         const data = req.body
-        console.log(data.email)
-        
+
         let profilePicture = req.fileRelativePath || 'profiles/default-avatar.png'
         const encryptedPassword = await hash(data.password)
 

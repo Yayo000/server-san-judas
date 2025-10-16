@@ -7,3 +7,10 @@ export const emailExist = async (email = '') => {
         throw new Error('El email ya está registrado')
     }
 }
+ export const existePost = async (_id = '') => {
+    const existe = await Post.findOne({_id})
+ 
+    if(existe){
+        throw new Error('La publicación ya no existe')
+    }
+}

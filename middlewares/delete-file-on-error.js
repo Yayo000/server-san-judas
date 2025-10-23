@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 
-export const delteFileOnError = async (err, req, res, next) => {
+export const deleteFileOnError = async (err, req, res, next) => {
     if(!err) return next()
         
         try {

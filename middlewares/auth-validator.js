@@ -2,7 +2,7 @@ import{ check } from 'express-validator'
 import { validarCampos } from './validate-values.js'
 import { emailExist } from '../helpers/db-validators.js'
 import { processFileUpload } from './process-file-upload.js'
-import { delteFileOnError } from './delete-file-on-error.js'
+import { deleteFileOnError } from './delete-file-on-error.js'
 
 export const registerValidator = [
     check("name", "El nombre es obligatorio").not().isEmpty(),
@@ -15,13 +15,14 @@ export const registerValidator = [
     }),
     validarCampos,
     processFileUpload,
-    delteFileOnError
+    deleteFileOnError
 ]
 
 export const loginValidator = [
     check("email", "No es un email váldo").optional().isEmail(),
-    check("password", "La contraseña debe tener al menos 8 caracteres"),
     check("username", "El usuario no es válido").optional(),
-
+    check("password", "La contraseña debe tener al menos 8 caracteres").isLength({
+        min: 6
+    }),
     validarCampos,
 ]

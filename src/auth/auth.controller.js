@@ -23,7 +23,7 @@ export const register = async (req, res) => {
                 User: newUser.username,
                 email: newUser.email,
             },
-        })
+        });
     }catch(error){
         return res.status(500).json({
             message: 'Error al registrar el usuario',
@@ -66,6 +66,6 @@ export const login = async (req, res) => {
             return res.status(500).json({
                 message: "Error del servidor",
                 error: error.message,
-            });
-        }
-    };
+         });
+     }
+ };

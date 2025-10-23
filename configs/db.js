@@ -35,6 +35,6 @@ import mongoose from 'mongoose'
             maxPoolSize: 10
          }) 
     }catch(error){
-        console.log(`Error al conectar la db: ${error.message}`)
+        console.log(`Error al conectar la db: ${error}`)
     }  
  }

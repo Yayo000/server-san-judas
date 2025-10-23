@@ -51,7 +51,7 @@ export const getAllPosts = async (req, res) => {
             .skip(skip)
             .limit(parseInt(limit))
 
-        const totalPosts = await Post.contentDocuments()
+        const totalPosts = await Post.countDocuments()
         return res.status(200).json({
         message:'publicaciones obtenidas exitosamente',
         posts,
@@ -75,12 +75,12 @@ export const getPostsById = async( req, res) => {
         const { id } = req.params
 
         const post = await Post.findById(id)
-        .populate('author', 'name surname username profilePicture')
-        populate({
-            path: 'coments',
-            populate: {
-                path: 'author',
-                select: 'name surname username profilePicture'
+            .populate('author', 'name surname username profilePicture')
+            .populate({
+                path: 'comments',
+                populate: {
+                    path: 'author',
+                    select: 'name surname username profilePicture'
             }
         })
         return res.status(200).json({

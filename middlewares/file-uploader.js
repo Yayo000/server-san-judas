@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
                 const fileExtension = extname(file.originalname)
                 const fileName = file.originalname.split(fileExtension)[0]
                 const shortUuid = uuidv4().substring(0, 8)
-            const generatedName= `${fileName}-${shortUuid}-${fileExtension}`
+                const generatedName= `${fileName}-${shortUuid}-${fileExtension}`
                 cb(null,generatedName)
             }
         }),

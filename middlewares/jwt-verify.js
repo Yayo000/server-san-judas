@@ -8,10 +8,11 @@ export const validateJWT = (req, res, next) => {
             message: 'Es necesario el token de authorization'
         })
     }
-
+    console.log(token)
     try{
         token = token.replace(/^Bearer\s+/, "")
         const decoded = jwt.verify(token, process.env.TOKEN_KEY)
+        console.log(decoded)
         req.uid = decoded.uid
     }catch(error){
         return res.status(401).json({
